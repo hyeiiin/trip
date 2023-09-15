@@ -13,9 +13,10 @@ import com.ssafy.util.DBUtil;
 public class AttractionDaoImpl implements AttractionDao {
 
 	private static AttractionDao attractionDao = new AttractionDaoImpl();
-	
-	private AttractionDaoImpl() {}
-	
+
+	private AttractionDaoImpl() {
+	}
+
 	public static AttractionDao getAttractionDao() {
 		return attractionDao;
 	}
@@ -31,12 +32,14 @@ public class AttractionDaoImpl implements AttractionDao {
 		try {
 			conn = DBUtil.getInstance().getConnection();
 
-			StringBuilder sql = new StringBuilder(
-					"SELECT content_id, content_type_id, title, addr1, addr2, zipcode, tel, first_image, first_image2, readcount, sido_code, gugun_code, latitude, longitude, mlevel\n"
-							+ "FROM  attraction_info \n");
+			StringBuilder sql = new StringBuilder("SELECT *\n" + "FROM attraction_info ");
+			sql.append("where sido_code = ?");
+			sql.append(" and content_type_id = ?");
 
 			pstmt = conn.prepareStatement(sql.toString());
 
+			pstmt.setInt(1, attractionInfoDto.getSidoCode());
+			pstmt.setInt(2, attractionInfoDto.getContentTypeId());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -82,7 +85,8 @@ public class AttractionDaoImpl implements AttractionDao {
 
 		try {
 			conn = DBUtil.getInstance().getConnection();
-			StringBuilder sql = new StringBuilder("select content_id, content_type_id, title, addr1, addr2, zipcode, tel, first_image, first_image2, readcount, sido_code, gugun_code, latitude, longitude, mlevel \n");
+			StringBuilder sql = new StringBuilder(
+					"select content_id, content_type_id, title, addr1, addr2, zipcode, tel, first_image, first_image2, readcount, sido_code, gugun_code, latitude, longitude, mlevel \n");
 			sql.append("from attraction_info \n");
 			sql.append("where title like ? \n");
 			sql.append("and sido_code like ? \n");
@@ -90,11 +94,11 @@ public class AttractionDaoImpl implements AttractionDao {
 //							+ "FROM  attraction_info where title=? sido_code=?and \n");
 //					sql.append("from board \n");
 //					sql.append("order by ");
-			//sql.append("from board \n");
+			// sql.append("from board \n");
 //							sql.append("where subject like ? \n");
 //							sql.append("order by article_no desc");
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, "%"+title+"%");
+			pstmt.setString(1, "%" + title + "%");
 			pstmt.setInt(2, sidoCode);
 
 			rs = pstmt.executeQuery();
