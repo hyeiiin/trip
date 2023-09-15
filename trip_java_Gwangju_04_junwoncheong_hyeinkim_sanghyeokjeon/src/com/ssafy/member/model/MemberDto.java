@@ -7,6 +7,16 @@ public class MemberDto {
 	private String userPass;
 	private String joinDate;
 
+	public MemberDto(String userId, String userName, String userPass) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPass = userPass;
+	}
+
+	public MemberDto() {
+	}
+
 	public String getUserId() {
 		return userId;
 	}

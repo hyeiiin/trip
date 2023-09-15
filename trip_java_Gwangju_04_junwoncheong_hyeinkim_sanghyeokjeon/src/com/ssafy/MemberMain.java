@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.ssafy.member.model.MemberDto;
+import com.ssafy.member.model.dao.MemberDaoImpl;
+import com.ssafy.member.model.service.MemberService;
+import com.ssafy.member.model.service.MemberServiceImpl;
 
 public class MemberMain {
 
@@ -51,19 +54,57 @@ public class MemberMain {
 		}
 	}
 
+	MemberService memberService = MemberServiceImpl.getmemberService();
+
 	private void registerMember() throws IOException {
 
+		// 아이디 비밀번호 이름 가입일
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("아이디를 입력하세요");
+		String userid = br.readLine();
+		System.out.println("비밀번호를 입력하세요");
+		String userpass = br.readLine();
+		System.out.println("이름을 입력하세요");
+		String username = br.readLine();
+
+		MemberDto memeberDto = new MemberDto(userid, username, userpass);
+		memberService.registerMember(memeberDto);
 	}
 
 	private void login() throws IOException {
 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("아이디를 입력하세요");
+		String userid = br.readLine();
+		System.out.println("비밀번호를 입력하세요");
+		String userpass = br.readLine();
+
+		memberService.login(userid, userpass);
+
 	}
 
 	private void modifyMember() throws IOException {
-
+		MemberDto memberDto = new MemberDto();
+		System.out.print("수정할  아이디: ");
+		memberDto.setUserId(in.readLine());
+		System.out.print("수정할 이름: ");
+		memberDto.setUserName(in.readLine());
+		System.out.print("수정할 비밀번호: ");
+		memberDto.setUserPass(in.readLine());
+		MemberServiceImpl.getmemberService().modifyMember(memberDto);
 	}
 
 	private void deleteMember() throws IOException {
+		System.out.print("삭제할 아이디: ");
+		String userid = in.readLine();
+
+		int cnt = MemberServiceImpl.getmemberService().deleteMember(userid);
+		if (cnt > 0)
+			System.out.println("삭제되었습니다.");
+		else
+			System.out.println("맞는 아이디가 없습니다.");
 
 	}
 

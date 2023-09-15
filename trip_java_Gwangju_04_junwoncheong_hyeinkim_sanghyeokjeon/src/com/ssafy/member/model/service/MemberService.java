@@ -10,6 +10,6 @@ public interface MemberService {
 
 	void modifyMember(MemberDto memberDto);
 
-	void deleteMember(String userId);
+	int deleteMember(String userId);
 
 }

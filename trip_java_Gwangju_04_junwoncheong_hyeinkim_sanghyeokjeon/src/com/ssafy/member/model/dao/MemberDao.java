@@ -10,6 +10,6 @@ public interface MemberDao {
 
 	void modifyMember(MemberDto memberDto);
 
-	void deleteMember(String userId);
+	int deleteMember(String userId);
 
 }
