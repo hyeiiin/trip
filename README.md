@@ -62,13 +62,11 @@ Class Diagram - Board
 
 
 ## 3) 1번으로 회원가입을 진행한 후에 로그인이 잘 되는 모습.
-![image](/uploads/da1029da820d793e9826e6c77ed69b35/image.png)  
-<br/> 
+![image](/uploads/ffbb130eb04d8dc1a861daad010af856/image.png)<br/> 
 <br/> 
 
 ## 4) 4번으로 (아이디 a 비밀번호 e) 인 회원의 회원탈퇴를 진행한 모습.
-![image](/uploads/da1029da820d793e9826e6c77ed69b35/image.png)
-
+![image](/uploads/b3c87d62d074748dd71b81d78f266962/image.png)
 
 ## 5) 지역, 컨텐츠 타입별 관광지 정보 검색.
 ### - 관광지역: 서울 / 관광타입: 여행코스 선택한 화면<br/> 
